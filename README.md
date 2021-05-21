@@ -67,9 +67,16 @@ Oracle에서 MariaDB로 DB 전환을 아래와 같은 방법으로 시도했다.
 
 # 실행방법
 
-```
-실행 시 jdk 버젼과 최소/최대 메모리를 추천해서 작성하자.
-```
+ JDK와 JVM은 아래 숫자로 실행하는 것을 추천한다.
+
+* JDK : Openjdk 11
+* JVM
+  * Clob, Blob 컬럼 미포함 
+    * 최소 메모리 : 120 mb
+    * 최소 메모리 : 300 mb
+  * Clob, Blob 컬럼 포함 
+    * 최소 메모리 : 512 mb
+    * 최대 메모리 : 1024 mb
 
 
 
@@ -138,15 +145,15 @@ public class Oracle2MySqlTableMigrationTest {
 
 # 성능테스트
 
-Oracle 11gR2(8 core)와 MariaDB-1:10.5.9+maria~focal(4 core)로 테스트 해본 결과다.
+Oracle 11gR2(6 core)와 MariaDB-1:10.5.9+maria~focal(4 core)로 테스트 해본 결과다.
 
 ## Oracle to MariaDB
 
 |                        | Row Count | Column Count | Memory(mb) |     Cost |
 | ---------------------: | --------: | -----------: | ---------: | -------: |
-|       문자, 숫자, 날짜 |     20917 |           43 |      13 mb |  18 sec. |
-|       문자, 숫자, 날짜 |  13121717 |          244 |     6.5 gb | 111 min. |
-| 문자, 숫자, 날짜, Clob |    347557 |           51 |    16.6 gb |  92 min. |
+|       문자, 숫자, 날짜 |     20000 |           43 |      13 mb |  18 sec. |
+|       문자, 숫자, 날짜 |  13000000 |          244 |     6.5 gb | 111 min. |
+| 문자, 숫자, 날짜, Clob |    340000 |           51 |    16.6 gb |  92 min. |
 | 문자, 숫자, 날짜, Blob |     20000 |           11 |     204 mb |  90 sec. |
 
 ## MariaDB to Oracle
@@ -154,8 +161,8 @@ Oracle 11gR2(8 core)와 MariaDB-1:10.5.9+maria~focal(4 core)로 테스트 해본
 |                        | Row Count | Column Count | Memory(mb) |    Cost |
 | ---------------------: | --------: | -----------: | ---------: | ------: |
 |       문자, 숫자, 날짜 |     20917 |           43 |      17 mb |  8 sec. |
-|       문자, 숫자, 날짜 |  13121717 |          244 |     6.3 gb | 31 min. |
-| 문자, 숫자, 날짜, Clob |    347557 |           51 |      22 gb |  4 min. |
+|       문자, 숫자, 날짜 |  13000000 |          244 |     6.3 gb | 31 min. |
+| 문자, 숫자, 날짜, Clob |    340000 |           51 |      22 gb |  4 min. |
 | 문자, 숫자, 날짜, Blob |     20000 |           11 |     222 mb |  1 min. |
 
 # Trouble shooting
