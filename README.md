@@ -1,7 +1,5 @@
 # Table transfer between Databases
 
-누가 언제 어디서 무엇을 어떻게 왜
-
 # Purpose
 
 **DB 사용자에게 DB 간 Table 복사에 작은 도움을 주기위해 만들었다.**
