@@ -73,7 +73,7 @@ Oracle에서 MariaDB로 DB 전환을 아래와 같은 방법으로 시도했다.
 * JVM
   * Clob, Blob 컬럼 미포함 
     * 최소 메모리 : 120 mb
-    * 최소 메모리 : 300 mb
+    * 최대 메모리 : 300 mb
   * Clob, Blob 컬럼 포함 
     * 최소 메모리 : 512 mb
     * 최대 메모리 : 1024 mb
@@ -169,5 +169,5 @@ Oracle 11gR2(6 core)와 MariaDB-1:10.5.9+maria~focal(4 core)로 테스트 해본
 
 ## 작은 max_allowed_packet 설정으로 MariaDB Blob 테이블 Insert 누락 
 
-기본적인 Loop는 1000 건에 1번씩 Insert 를 시도 하지만, Insert 문장이 너무 길면 mysql 에서 사용못하는 경우가 있다. 저버의 max_allowed_packet을 늘리는 작업을 수행한다.
+기본적인 Loop는 1000 건에 1번씩 Insert 를 시도 하지만, Insert 문장이 너무 길면 mysql 받지 못하는 경우가 있다. 서버의 max_allowed_packet을 늘리는 작업을 수행한다.
 
